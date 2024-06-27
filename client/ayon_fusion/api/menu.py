@@ -46,7 +46,6 @@ class AYONMenu(QtWidgets.QWidget):
             | QtCore.Qt.WindowCloseButtonHint
             | QtCore.Qt.WindowStaysOnTopHint
         )
-        self.render_mode_widget = None
         self.setWindowTitle(MENU_LABEL)
 
         context_label = QtWidgets.QLabel("Context", self)
@@ -133,6 +132,9 @@ class AYONMenu(QtWidgets.QWidget):
         # Update current context label
         label = get_current_folder_path()
         self.context_label.setText(label)
+
+        # Update window title
+        self.setWindowTitle(f"{label} - {MENU_LABEL}")
 
     def register_callback(self, name, fn):
         # Create a wrapper callback that we only store
