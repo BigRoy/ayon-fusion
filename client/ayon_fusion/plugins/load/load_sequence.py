@@ -161,6 +161,7 @@ class FusionLoadSequence(load.LoaderPlugin):
             args = (-32768, -32768)
             tool = comp.AddTool("Loader", *args)
             tool["Clip"] = comp.ReverseMapPath(path)
+            tool.SetAttrs({"TOOLB_NameSet": True, "TOOLS_Name": name})
 
             self._set_name(tool, context)
 
