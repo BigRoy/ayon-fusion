@@ -4,6 +4,7 @@ Global = {
   Paths = {
     Map = {
       ["AYON:"] = "$(AYON_FUSION_ROOT)/deploy/ayon",
+      ["Reactor:"] = "$(REACTOR)",
       ["Config:"] = "UserPaths:Config;AYON:Config",
       ["Scripts:"] = "UserPaths:Scripts;Reactor:System/Scripts",
       ["UserPaths:"] = "UserData:;AllData:;Fusion:;Reactor:Deploy"
