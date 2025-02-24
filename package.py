@@ -1,6 +1,6 @@
 name = "fusion"
 title = "Fusion"
-version = "0.3.1+cb.3"
+version = "0.3.2+cb.1"
 app_host_name = "fusion"
 client_dir = "ayon_fusion"
 
