@@ -28,6 +28,18 @@ self = sys.modules[__name__]
 self.menu = None
 
 
+def open_script_editor():
+    """Open AYON Console Interpreter Window inside Fusion"""
+    from ayon_core.tools.console_interpreter.ui import ConsoleInterpreterWindow
+    global script_window
+
+    if "script_window" not in globals():
+        script_window = ConsoleInterpreterWindow()
+    script_window.show()
+    script_window.raise_()
+    script_window.activateWindow()
+
+
 class AYONMenu(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
         super(AYONMenu, self).__init__(*args, **kwargs)
@@ -70,6 +82,9 @@ class AYONMenu(QtWidgets.QWidget):
         duplicate_with_inputs_btn = QtWidgets.QPushButton(
             "Duplicate with input connections", self
         )
+        script_editor_btn = QtWidgets.QPushButton(
+            "Script Editor", self
+        )
 
         layout = QtWidgets.QVBoxLayout(self)
         layout.setContentsMargins(10, 20, 10, 20)
@@ -100,6 +115,10 @@ class AYONMenu(QtWidgets.QWidget):
 
         layout.addWidget(duplicate_with_inputs_btn)
 
+        layout.addSpacing(20)
+
+        layout.addWidget(script_editor_btn)
+
         self.setLayout(layout)
 
         # Store reference so we can update the label
@@ -113,6 +132,9 @@ class AYONMenu(QtWidgets.QWidget):
         libload_btn.clicked.connect(self.on_libload_clicked)
         duplicate_with_inputs_btn.clicked.connect(
             self.on_duplicate_with_inputs_clicked
+        )
+        script_editor_btn.clicked.connect(
+            self.on_script_editor_clicked
         )
         set_resolution_btn.clicked.connect(self.on_set_resolution_clicked)
         set_framerange_btn.clicked.connect(self.on_set_framerange_clicked)
@@ -172,6 +194,9 @@ class AYONMenu(QtWidgets.QWidget):
 
     def on_set_framerange_clicked(self):
         set_current_context_framerange()
+
+    def on_script_editor_clicked(self):
+        open_script_editor()
 
 
 def launch_ayon_menu():
